@@ -1,0 +1,15 @@
+name = "cf-api-gateway"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+# Deploy to custom domain via CF DNS
+# Requires: DNS A/CNAME record for gateway.austegard.com pointing to CF
+routes = [
+  { pattern = "gateway.austegard.com/*", zone_name = "austegard.com" }
+]
+
+# Secrets (set via `wrangler secret put` or CF dashboard — never hardcode here):
+#   PROXY_TOKEN      — shared secret for container → gateway auth
+#   GEMINI_API_KEY   — Google AI Studio key
+#   OPENAI_API_KEY   — OpenAI key (when needed)
+#   ANTHROPIC_API_KEY — Anthropic key (when needed)
